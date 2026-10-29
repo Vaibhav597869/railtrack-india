@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1f33">
+<title>RailTrack India</title>
+<style>
+:root{--navy:#0b1f33;--blue:#123b5d;--mint:#8af0c5;--bg:#f3f6fa;--ink:#16283a;--muted:#687b8e;--line:#e0e7ef;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}button,input{font:inherit}button{cursor:pointer}
+.app{max-width:540px;margin:auto;min-height:100vh;background:var(--bg);padding-bottom:84px}
+header{background:linear-gradient(145deg,var(--navy),#164b70);color:white;padding:25px 20px 22px;border-radius:0 0 26px 26px}
+.brand{display:flex;align-items:center;gap:12px}.logo{height:46px;width:46px;border-radius:15px;background:#244e6d;display:grid;place-items:center;font-size:25px}.brand h1{font-size:20px;margin:0}.brand p{margin:3px 0 0;color:#c5d8e7;font-size:12px}.pill{margin-left:auto;border:1px solid #4c718a;color:#d5e9f5;border-radius:99px;padding:6px 9px;font-size:10px}
+.greeting{margin:24px 0 15px}.greeting h2{font-size:25px;line-height:1.15;margin:0 0 7px}.greeting p{color:#c5d8e7;margin:0;font-size:13px}
+.searchbox{background:white;border-radius:15px;display:flex;align-items:center;padding:5px 6px 5px 14px;gap:8px}.searchbox span{font-size:20px}.searchbox input{min-width:0;flex:1;border:0;outline:0;color:#1b2b3b;padding:11px 0;font-size:14px}.searchbox button{background:var(--mint);border:0;border-radius:11px;padding:11px 14px;font-weight:750;color:#113a35}
+main{padding:20px 16px}.section-head{display:flex;justify-content:space-between;align-items:center;margin:2px 2px 12px}.section-head h3{font-size:16px;margin:0}.subtle{font-size:11px;color:var(--muted)}.quickgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:24px}.quick{border:1px solid var(--line);border-radius:15px;background:white;padding:13px 5px 11px;text-align:center;color:var(--ink)}.quick .ico{font-size:22px;display:block;margin-bottom:7px}.quick span:last-child{font-size:10px;font-weight:650}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:11px}.train-top{display:flex;gap:10px;align-items:flex-start}.train-icon{background:#e9f5f0;border-radius:12px;width:42px;height:42px;display:grid;place-items:center;font-size:22px;flex-shrink:0}.train-name{flex:1;min-width:0}.train-name h4{font-size:14px;margin:1px 0 4px}.train-name p{font-size:11px;color:var(--muted);margin:0}.demo{font-size:9px;background:#fff1d6;color:#8c5a00;padding:5px 7px;border-radius:99px;white-space:nowrap}
+.route{display:flex;align-items:center;gap:8px;margin:17px 0 12px}.station{flex:1}.station strong{font-size:15px;display:block}.station small{font-size:10px;color:var(--muted)}.track{flex:1;text-align:center;color:#278b70;font-size:18px}.track small{display:block;font-size:9px;color:var(--muted);white-space:nowrap}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:12px}.stat small{display:block;color:var(--muted);font-size:10px;margin-bottom:4px}.stat strong{font-size:12px}.detail-btn{width:100%;margin-top:13px;padding:11px;border:1px solid #d5e4ef;border-radius:11px;background:#f7fbff;color:#174d71;font-weight:700;font-size:12px}
+.notice{background:#eaf6f1;border:1px solid #cbeadd;border-radius:14px;padding:13px;color:#205846;font-size:11px;line-height:1.5;margin:15px 0 20px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(540px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid var(--line);padding:9px 7px calc(9px + env(safe-area-inset-bottom));z-index:5}.navbtn{background:none;border:0;color:#8090a0;font-size:10px;padding:4px}.navbtn b{display:block;font-size:20px;margin-bottom:3px}.navbtn.active{color:#11684e;font-weight:750}
+.view{display:none}.view.active{display:block}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}.back{border:0;background:transparent;color:#1d5d7c;font-weight:700;padding:0 0 14px}.stationrow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.dot{width:11px;height:11px;border-radius:50%;background:#218768;margin-top:5px;box-shadow:0 0 0 4px #e2f5ed}.stationrow:last-child{border:0}.stationrow strong{font-size:13px}.stationrow small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+label{font-size:12px;font-weight:700;display:block;margin:14px 0 6px}input.field{width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;background:white;outline-color:#3a9478}
+@media(min-width:541px){body{padding:18px 0}.app{border-radius:24px;overflow:hidden;box-shadow:0 10px 50px #15283a15}.bottom{bottom:18px;border-radius:0 0 24px 24px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">🚆</div><div><h1>RailTrack India</h1><p>Your journey, made simpler</p></div><span class="pill">FIRST BUILD</span></div>
+ <div class="greeting"><h2>Where are you<br>headed today?</h2><p>Find trains, explore routes and plan your journey.</p></div>
+ <form class="searchbox" id="searchForm"><span>⌕</span><input id="trainSearch" aria-label="Train search" placeholder="Train name or number" autocomplete="off"><button type="submit">Search</button></form>
+</header>
+<main>
+ <section id="homeView" class="view active">
+  <div class="section-head"><h3>Quick services</h3><span class="subtle">Tap to explore</span></div>
+  <div class="quickgrid">
+   <button class="quick" data-view="tracking"><span class="ico">📍</span><span>Train status</span></button>
+   <button class="quick" data-view="routes"><span class="ico">🗺️</span><span>Routes</span></button>
+   <button class="quick" data-view="pnr"><span class="ico">🎫</span><span>PNR status</span></button>
+   <button class="quick" data-view="stations"><span class="ico">🚉</span><span>Stations</span></button>
+  </div>
+  <div class="section-head"><h3>Try a sample train</h3><span class="subtle">Demo information</span></div>
+  <div id="trainCards"></div>
+  <div class="notice"><strong>ℹ️ Demo mode:</strong> Train details shown here are sample data to test the app. They are not live railway status, confirmed platform numbers, or official timings.</div>
+ </section>
+ <section id="trackingView" class="view">
+  <button class="back" data-view="home">← Back to home</button>
+  <div class="section-head"><h3>Train running status</h3></div>
+  <div class="card"><p class="subtle">Enter a train number or name to search our sample records.</p><label for="statusSearch">Train number or name</label><input class="field" id="statusSearch" placeholder="e.g. 12301 or Rajdhani"><button class="detail-btn" id="statusButton">Find sample train</button><div id="statusResult"></div></div>
+  <div class="notice">Real-time location and delay estimates require a reliable railway data API. This demo does not connect to live train tracking.</div>
+ </section>
+ <section id="routesView" class="view">
+  <button class="back" data-view="home">← Back to home</button><div class="section-head"><h3>Explore routes</h3></div><div id="routeCards"></div>
+ </section>
+ <section id="pnrView" class="view">
+  <button class="back" data-view="home">← Back to home</button><div class="section-head"><h3>PNR status</h3></div>
+  <div class="card"><p class="subtle">This screen is ready for a PNR service integration.</p><label for="pnrInput">10-digit PNR number</label><input class="field" id="pnrInput" inputmode="numeric" maxlength="10" placeholder="Enter PNR number"><button class="detail-btn" id="pnrButton">Check format</button><div id="pnrResult" class="subtle" style="margin-top:12px"></div></div>
+  <div class="notice">For privacy, this first build does not send or store your PNR. It only checks that you entered 10 digits.</div>
+ </section>
+ <section id="stationsView" class="view">
+  <button class="back" data-view="home">← Back to home</button><div class="section-head"><h3>Popular sample stations</h3></div>
+  <div class="card"><div class="stationrow"><div class="dot"></div><div><strong>Howrah Junction (HWH)</strong><small>Kolkata, West Bengal · Sample station listing</small></div></div><div class="stationrow"><div class="dot"></div><div><strong>Asansol Junction (ASN)</strong><small>Asansol, West Bengal · Sample station listing</small></div></div><div class="stationrow"><div class="dot"></div><div><strong>New Delhi (NDLS)</strong><small>Delhi · Sample station listing</small></div></div><div class="stationrow"><div class="dot"></div><div><strong>Chennai Central (MAS)</strong><small>Chennai, Tamil Nadu · Sample station listing</small></div></div></div>
+ </section>
+ <section id="detailView" class="view"><button class="back" data-view="home">← Back to home</button><div id="detailContent"></div></section>
+</main>
+<nav class="bottom" aria-label="Main navigation">
+ <button class="navbtn active" data-view="home"><b>⌂</b>Home</button>
+ <button class="navbtn" data-view="tracking"><b>⌖</b>Tracking</button>
+ <button class="navbtn" data-view="routes"><b>⇄</b>Routes</button>
+ <button class="navbtn" data-view="stations"><b>▤</b>Stations</button>
+</nav>
+</div>
+<script>
+// @ts-nocheck
+const trains=[
+ {num:"12301",name:"Howrah–New Delhi Rajdhani Express",from:"HWH",fromName:"Howrah",to:"NDLS",toName:"New Delhi",depart:"16:50",arrive:"10:05",duration:"17h 15m",stops:["Howrah Junction","Dhanbad Junction","Pt. Deen Dayal Upadhyaya Junction","Kanpur Central","New Delhi"]},
+ {num:"12302",name:"New Delhi–Howrah Rajdhani Express",from:"NDLS",fromName:"New Delhi",to:"HWH",depart:"16:55",arrive:"09:55",duration:"17h 00m",stops:["New Delhi","Kanpur Central","Pt. Deen Dayal Upadhyaya Junction","Dhanbad Junction","Howrah Junction"]},
+ {num:"13005",name:"Howrah–Amritsar Mail",from:"HWH",fromName:"Howrah",to:"ASR",depart:"19:15",arrive:"10:30",duration:"39h 15m",stops:["Howrah Junction","Asansol Junction","Dhanbad Junction","Lucknow Charbagh","Amritsar Junction"]},
+ {num:"12019",name:"Howrah–Ranchi Shatabdi Express",from:"HWH",fromName:"Howrah",to:"RNC",depart:"06:05",arrive:"13:15",duration:"7h 10m",stops:["Howrah Junction","Kharagpur Junction","Tatanagar Junction","Muri Junction","Ranchi Junction"]}
+];
+const byId=id=>document.getElementById(id);
+function card(t){return `<article class="card"><div class="train-top"><div class="train-icon">🚆</div><div class="train-name"><h4>${t.name}</h4><p>${t.num} · Sample schedule</p></div><span class="demo">DEMO</span></div><div class="route"><div class="station"><strong>${t.from}</strong><small>${t.fromName}</small></div><div class="track">→<small>${t.duration}</small></div><div class="station" style="text-align:right"><strong>${t.to}</strong><small>${t.toName}</small></div></div><div class="stats"><div class="stat"><small>Departure</small><strong>${t.depart}</strong></div><div class="stat"><small>Journey time</small><strong>${t.duration}</strong></div><div class="stat"><small>Arrival</small><strong>${t.arrive}</strong></div></div><button class="detail-btn" data-train="${t.num}">View route & details →</button></article>`}
+byId("trainCards").innerHTML=trains.slice(0,3).map(card).join("");
+byId("routeCards").innerHTML=trains.map(card).join("");
+function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const target=byId(name+"View");if(target)target.classList.add("active");document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.view===name));window.scrollTo({top:0,behavior:"smooth"})}
+document.addEventListener("click",e=>{const v=e.target.closest("[data-view]");if(v)showView(v.dataset.view);const t=e.target.closest("[data-train]");if(t)showDetail(t.dataset.train)});
+function showDetail(num){const t=trains.find(x=>x.num===num);if(!t)return;byId("detailContent").innerHTML=`<div class="card"><div class="train-top"><div class="train-icon">🚆</div><div class="train-name"><h4>${t.name}</h4><p>Train ${t.num}</p></div><span class="demo">DEMO</span></div><div class="route"><div class="station"><strong>${t.from}</strong><small>${t.fromName}</small></div><div class="track">→<small>${t.duration}</small></div><div class="station" style="text-align:right"><strong>${t.to}</strong><small>${t.toName}</small></div></div><div class="notice">Scheduled times below are illustrative sample values. Verify actual timings before travel.</div>${t.stops.map((s,i)=>`<div class="stationrow"><div class="dot"></div><div><strong>${s}</strong><small>${i===0?"Starting station":i===t.stops.length-1?"Destination":"Route stop"} · Timing not connected</small></div></div>`).join("")}</div>`;showView("detail")}
+function search(query){const q=query.trim().toLowerCase();if(!q)return;const t=trains.find(x=>x.num===q||x.name.toLowerCase().includes(q)||x.fromName.toLowerCase().includes(q)||x.toName.toLowerCase().includes(q));if(t)showDetail(t.num);else{showView("tracking");byId("statusSearch").value=query;byId("statusResult").innerHTML='<p class="subtle">No matching sample train found. Try 12301, 12302, 13005 or 12019.</p>'}}
+byId("searchForm").addEventListener("submit",e=>{e.preventDefault();search(byId("trainSearch").value)});
+byId("statusButton").addEventListener("click",()=>search(byId("statusSearch").value));
+byId("pnrButton").addEventListener("click",()=>{const p=byId("pnrInput").value.trim();byId("pnrResult").textContent=/^\d{10}$/.test(p)?"Format looks correct. Live PNR lookup is not connected yet.":"Please enter exactly 10 digits."});
+</script>
+</body>
+</html>
